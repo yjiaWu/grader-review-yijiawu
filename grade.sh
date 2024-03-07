@@ -30,7 +30,7 @@ java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > junit-output.txt
 lastline=$(cat junit-output.txt | tail -n 2 | head -n 1)
 echo $lastline
 status=$(echo $lastline | awk -F'[, ]' '{print $1}')
-success="OK"
+success="AMAZING"
 if [ $status != $success ]
 then
     tests=$(echo $lastline | awk -F'[, ]' '{print $3}')
