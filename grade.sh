@@ -28,12 +28,18 @@ fi
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > junit-output.txt
 
 lastline=$(cat junit-output.txt | tail -n 2 | head -n 1)
-tests=$(echo $lastline | awk -F'[, ]' '{print $3}')
-echo $tests
-failures=$(echo $lastline | awk -F'[, ]' '{print $7}')
-# success=$(($tests))
+echo $lastline
+status=$(echo $lastline | awk -F'[, ]' '{print $1}')
+success="OK"
+if [ $status != $success ]
+then
+    tests=$(echo $lastline | awk -F'[, ]' '{print $3}')
+    failures=$(echo $lastline | awk -F'[, ]' '{print $7}')
+fi
 
-echo "Thank you for trying!!"
+success=$(($tests))
+
+echo "Your score is $success / $tests"
 
 
 
